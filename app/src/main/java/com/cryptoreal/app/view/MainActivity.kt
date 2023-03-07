@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launchWhenCreated {
             viewModel.currencyRates.collect {
                 when (it) {
-                    is CryptoState.Success -> bindUi(it.data)
+                    is CryptoState.Success ->  bindUi(it.data)
                     is CryptoState.Error -> {}
                     is CryptoState.Initial -> {}
                 }
