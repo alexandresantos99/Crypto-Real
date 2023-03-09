@@ -3,12 +3,8 @@ package com.cryptoreal.app.view
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.cryptoreal.app.commons.CryptoConstants.AUD
-import com.cryptoreal.app.commons.CryptoConstants.BTC
-import com.cryptoreal.app.commons.CryptoConstants.ETH
-import com.cryptoreal.app.commons.CryptoConstants.USD
 import com.cryptoreal.app.databinding.ActivityMainBinding
-import com.cryptoreal.app.models.CurrencyRates
+import com.cryptoreal.app.models.Currency
 import com.cryptoreal.app.state.CryptoState
 import com.cryptoreal.app.view.adapter.MainAdapter
 import com.cryptoreal.app.viewmodel.MainViewModel
@@ -47,11 +43,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun bindUi(data: CurrencyRates?) {
-        val filterList = data?.rates?.filterKeys {
-            it == USD || it == BTC || it == AUD || it == ETH
-        }?.toList()
-        adapter.submitList(filterList)
+    private fun bindUi(list: List<Pair<String, Currency>>) {
+        adapter.submitList(list)
         mainViewModel.refreshCurrencyRates()
         bindDate()
     }

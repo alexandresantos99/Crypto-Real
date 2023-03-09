@@ -19,7 +19,7 @@ class MainViewModel(private val repository: MainRepository) : ViewModel() {
         viewModelScope.launch {
             repository.getCurrencyRates().collect { currencyRates ->
                 _currencyRates.value = when {
-                    currencyRates.rates.isNotEmpty() -> CryptoState.Success(currencyRates)
+                    currencyRates.isNotEmpty() -> CryptoState.Success(currencyRates)
                     else -> CryptoState.Error
                 }
             }
@@ -32,7 +32,7 @@ class MainViewModel(private val repository: MainRepository) : ViewModel() {
                 delay(60000)
                 repository.getCurrencyRates().collect { currencyRates ->
                     _currencyRates.value = when {
-                        currencyRates.rates.isNotEmpty() -> {
+                        currencyRates.isNotEmpty() -> {
                             CryptoState.Success(currencyRates)
                         }
                         else -> CryptoState.Error

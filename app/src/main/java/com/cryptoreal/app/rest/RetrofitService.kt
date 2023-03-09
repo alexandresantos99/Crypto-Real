@@ -1,11 +1,11 @@
 package com.cryptoreal.app.rest
 
-import com.cryptoreal.app.models.CurrencyRates
+import com.cryptoreal.app.models.Currency
 import retrofit2.http.GET
 
 interface RetrofitService {
 
-    @GET("exchange_rates")
-    suspend fun getExchangeRates(): CurrencyRates
+    @GET("cryptos")
+    suspend fun getExchangeRates(): List<Pair<String, Currency>>
 
 }
