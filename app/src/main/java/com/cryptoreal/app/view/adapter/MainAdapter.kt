@@ -6,11 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.cryptoreal.app.R
-import com.cryptoreal.app.commons.CryptoConstants.AUD
-import com.cryptoreal.app.commons.CryptoConstants.BTC
-import com.cryptoreal.app.commons.CryptoConstants.ETH
-import com.cryptoreal.app.commons.CryptoConstants.USD
+import com.bumptech.glide.Glide
 import com.cryptoreal.app.databinding.ResItemCryptoBinding
 import com.cryptoreal.app.models.Currency
 
@@ -35,12 +31,9 @@ class MainViewHolder(private val binding: ResItemCryptoBinding) :
     @SuppressLint("SetTextI18n")
     fun bind(pair: Pair<String, Currency>) {
         binding.title.text = "${pair.second.unit} ${pair.second.value}"
-        when (pair.first) {
-            USD -> binding.imageView.setImageResource(R.drawable.usd)
-            BTC -> binding.imageView.setImageResource(R.drawable.btc)
-            AUD -> binding.imageView.setImageResource(R.drawable.aud)
-            ETH -> binding.imageView.setImageResource(R.drawable.eth)
-        }
+        Glide.with(itemView.context)
+            .load(pair.second.urlImage)
+            .into(binding.imageView)
     }
 
 }

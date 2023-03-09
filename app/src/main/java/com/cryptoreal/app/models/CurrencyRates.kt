@@ -16,5 +16,7 @@ data class Currency(
     @SerializedName("value")
     val value: Double,
     @SerializedName("type")
-    val type: String
+    val type: String,
+    @SerializedName("urlImage")
+    val urlImage: String
 )
